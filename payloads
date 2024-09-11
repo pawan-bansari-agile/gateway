@@ -1,0 +1,103 @@
+test
+
+
+CreateBook mutation
+mutation {
+  createBook(data: { title: "Sample Book", description: "This is a sample book item", author:"tarak", userId:"66e143faaadfcf50b21ef232" }) {
+    id
+    title
+    description
+    userId
+  }
+}
+
+
+
+Get all books of a user 
+query {
+  getBooks {
+      id
+      title
+    description
+      author
+    userId
+    }
+}
+
+
+Get a book by id
+query {
+  getBook(id: "66e13ac284d1fdba7d2476ec") {
+    id
+    title
+    description
+    author
+    userId
+  }
+}
+
+
+
+Update a book
+mutation {
+  updateBook(data:{id:"66e13ac284d1fdba7d2476ec",title:"new updated title", description:"new updated description", author:"new updated author"}) {
+    id
+    title
+description
+    author
+    userId
+  }
+}
+
+Delete a book
+mutation {
+  deleteBook(data:{id: "66e13ac284d1fdba7d2476ec"})
+}
+
+
+
+
+Create a user
+mutation {
+  createUser(data: { userName: "JohnDoe", email: "johndoe@example.com", password: "securepassword" }) {
+    id
+    userName
+    email
+  }
+}
+
+
+get a user by id
+query {
+  getUser(id: "some-valid-user-id") {
+    id
+    userName
+    email
+  }
+}
+
+Get all users
+query {
+  getUsers {
+    id
+    userName
+    email
+  }
+}
+
+
+Update a user
+mutation {
+  updateUser(data: { id: "some-valid-user-id", email: "newemail@example.com" }) {
+    id
+    userName
+    email
+  }
+}
+
+Delete a user
+mutation {
+  deleteUser(id: "some-valid-user-id")
+}
+
+

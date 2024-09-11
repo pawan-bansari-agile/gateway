@@ -1,0 +1,130 @@
+# schema.graphql
+
+# User Type Definition
+type User {
+  id: ID!
+  userName: String!
+  email: String!
+  password: String
+}
+
+# Book Type Definition
+type Book {
+  id: ID!
+  title: String!
+  description: String!
+  author: String!
+  userId: String
+}
+
+# Collection Type Definition
+#type Collection {
+#  id: ID!
+#  name: String!
+#}
+
+type access_token {
+  access_token: String!
+}
+
+# Query Type Definitions
+type Query {
+  # Fetch all users
+  getUsers: [User!]!
+
+  # Fetch a user by ID
+  getUser(id: ID!): User
+
+  # Fetch all books
+  getBooks: [Book!]!
+
+  # Fetch book by id
+  getBook(id: ID!): Book
+
+  # Fetch all collections
+  # getCollections: [Collection!]!
+
+  # Fetch collection by id
+  # getCollection: Collection
+}
+
+# Mutation Type Definitions
+type Mutation {
+  # User login to get token
+  login(data: loginDetails): access_token
+
+  # Create a new user
+  createUser(data: CreateUserInput!): User!
+
+  # Update an existing user
+  updateUser(data: UpdateUserInput!): User!
+
+  # Delete a user by ID
+  deleteUser(id: ID!): Boolean!
+
+  # Create a new book
+  createBook(data: CreateBookInput!): Book!
+
+  # Update an existing book
+  updateBook(data: UpdateBookInput!): Book!
+
+  # Delete a book by ID
+  deleteBook(data: DeleteBookInput): Boolean!
+
+  # Create a new collection
+  # createCollection(data: CreateCollectionInput!): Collection!
+
+  # Update an existing Collection
+  # updateCollection(data: UpdateCollectionInput!): Collection!
+
+  # Delete a Collection by ID
+  # deleteCollection(id: ID!): Boolean!
+}
+
+# Input Types for User
+input CreateUserInput {
+  userName: String!
+  email: String!
+  password: String!
+}
+
+input DeleteBookInput {
+  id: String!
+  userId: String
+}
+
+input CreateBookInput {
+  title: String!
+  author: String!
+  description: String!
+  userId: String
+}
+
+#input CreateCollectionInput {
+#  name: String!
+#}
+
+input loginDetails {
+  email: String!
+  password: String!
+}
+
+input UpdateUserInput {
+  id: ID!
+  userName: String
+  email: String
+  password: String
+}
+
+#input UpdateCollectionInput {
+#  id: ID!
+#  name: String
+#}
+
+input UpdateBookInput {
+  id: ID!
+  title: String
+  description: String
+  author: String
+  userId: String
+}

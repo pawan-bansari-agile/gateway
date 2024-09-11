@@ -1,0 +1,122 @@
+syntax = "proto3";
+
+package app;
+
+// Declare a service for each controller you have
+service BookController {
+  // Declare an rpc for each method that is called via gRPC
+  rpc CreateBook (CreateBookRequest) returns (Book);
+  rpc GetBooks (GetUsersBooks) returns (GetBooksResponse);
+  rpc GetBook (GetBookRequest) returns (BookResponse);
+  rpc UpdateBook(UpdateBookRequest) returns (BookResponse);
+  rpc DeleteBook (DeleteBookRequest) returns (DeleteBookResponse);
+
+}
+
+message GetUsersBooks {
+  string userId = 1;
+}
+
+message GetBookRequest {
+  string id = 1;
+  string userId = 2;
+}
+
+message DeleteBookRequest {
+  string id = 1;
+  string userId = 2;
+}
+
+message DeleteBookResponse {
+  bool success = 1;
+}
+
+message Book {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  string author = 4;
+  string userId = 5;
+}
+
+message CreateBookRequest {
+  string title = 1;
+  string description = 2;
+  string author = 3;
+  string userId = 4;
+}
+
+message UpdateBookRequest {
+  string id = 1;
+  string title = 2;
+  string author = 3;
+  string description = 4;
+  string userId = 5;
+}
+
+message BookResponse {
+  Book book = 1;
+}
+
+message GetBooksResponse {
+  repeated Book books = 1;
+}
+
+message Empty {}
+
+// The User service definition.
+service UserController {
+  rpc CreateUser(CreateUserRequest) returns (UserResponse);
+  rpc GetUser(GetUserRequest) returns (UserResponse);
+  rpc GetUsers(Empty) returns (GetUsersResponse);
+  rpc UpdateUser(UpdateUserRequest) returns (UserResponse);
+  rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse);
+}
+
+// The User message structure that matches the Mongoose User schema.
+message User {
+  string id = 1; // The MongoDB ObjectId, represented as a string
+  string userName = 2;
+  string email = 3;
+  string password = 4;
+}
+
+// Request message for creating a user
+message CreateUserRequest {
+  string userName = 1;
+  string email = 2;
+  string password = 3;
+}
+
+// Response message for a single user operation
+message UserResponse {
+  User user = 1;
+}
+
+// Request message for retrieving a user by ID
+message GetUserRequest {
+  string id = 1;
+}
+
+// Response message for retrieving multiple users
+message GetUsersResponse {
+  repeated User users = 1;
+}
+
+// Request message for updating a user
+message UpdateUserRequest {
+  string id = 1;
+  string userName = 2;
+  string email = 3;
+  string password = 4;
+}
+
+// Request message for deleting a user by ID
+message DeleteUserRequest {
+  string id = 1;
+}
+
+// Empty response message
+message DeleteUserResponse {
+  bool success = 1;
+}
