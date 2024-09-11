@@ -71,7 +71,9 @@ For example queries and mutations you can refer to the file payloads in this rep
 
 To start the services just execute the below commands in the terminal:-
 
-npm i && npm run start:dev
+```bash
+$ npm i && npm run start:dev
+```
 
 book service will run on port 50051
 user service will run on port 50052
